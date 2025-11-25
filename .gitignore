@@ -1,0 +1,94 @@
+# --- Python cache / bytecode ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist-info/
+
+# --- Virtual environments ---
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.env
+.Python
+
+# --- VS Code ---
+.vscode/
+*.code-workspace
+
+# --- Azure Function artifacts ---
+.python_packages/
+bin/
+obj/
+csx/
+.vs/
+edge/
+Publish/
+oryx-manifest.toml
+.azure/
+azurite/
+
+# --- Local settings (contains secrets!) ---
+local.settings.json
+appsettings.json
+.secrets
+.secrets/
+secrets/
+data/
+App_Data/
+
+# --- Build / Distribution folders ---
+dist/
+build/
+packages/
+tools/
+TestResults/
+
+# --- Node / Frontend stuff ---
+node_modules/
+
+# --- Misc system / IDE files ---
+*.user
+*.suo
+*.cscfg
+*.Cache
+project.lock.json
+.DS_Store
+Thumbs.db
+
+# --- Azurite local storage ---
+__blobstorage__
+__queuestorage__
+__azurite_db*__.json
+AzuriteConfig
+
+# --- Logs ---
+*.log
+logs/
+pip-log.txt
+pip-delete-this-directory.txt
+
+
+
+# --- pytest / coverage ---
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# --- MyPy type checking ---
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# --- PyCharm ---
+.idea/
+
+# --- Environment variables ---
+.env.local
+.env.*.local

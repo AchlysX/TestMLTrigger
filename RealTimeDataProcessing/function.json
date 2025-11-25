@@ -1,0 +1,23 @@
+{
+  "scriptFile": "__init__.py",
+  "bindings": [
+    {
+      "name": "documents",
+      "type": "cosmosDBTrigger",
+      "direction": "in",
+      "connection": "cosmosdbchateaudunparis_DOCUMENTDB",
+      "databaseName": "Smartoffice",
+      "containerName": "Sensordata",
+      "leaseContainerName": "leases",
+      "createLeaseContainerIfNotExists": true
+    },
+    {
+      "name": "outputDocument",
+      "type": "cosmosDB",
+      "direction": "out",
+      "connection": "cosmosdbchateaudunparis_DOCUMENTDB",
+      "databaseName": "Smartoffice",
+      "containerName": "RealTimeDataProcessing"
+    }
+  ]
+}
