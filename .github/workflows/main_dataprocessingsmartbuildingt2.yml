@@ -1,4 +1,4 @@
-name: Build and deploy Python project to Azure Function App - DataProcessingSmartBuildingT2
+name: Deploy Azure Function App - DataProcessingSmartBuildingT2
 
 on:
   push:
@@ -8,55 +8,20 @@ on:
 
 env:
   AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'
-  PYTHON_VERSION: '3.10'   # MUST match Azure Functions runtime
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
-
-      - name: Install dependencies into .python_packages
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install -r requirements.txt --target=".python_packages/lib/site-packages"
-
-      - name: Zip artifact for deployment
-        run: |
-          zip -r release.zip . -x "venv/*"
-
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v4
-        with:
-          name: python-app
-          path: release.zip
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v4
-        with:
-          name: python-app
-
-      - name: Unzip artifact
-        run: unzip release.zip
-
-      - name: Deploy to Azure Functions
+      - name: Deploy using Oryx build
         uses: Azure/functions-action@v1
         with:
           app-name: 'DataProcessingSmartBuildingT2'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B70A8562ABE548B0BF54C5C6837B6EB6 }}
           package: .
+          enable-oryx-build: true
